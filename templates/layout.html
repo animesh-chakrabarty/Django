@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <script src={%static "js/script.js"%} defer></script>
+    <title>
+    {%block title%}
+        Default title
+    {% endblock %}
+    </title>
+</head>
+<body>
+    <nav>
+        <a href={% url "home" %} >🏠</a> | 
+        <a href= {% url "about" %}>😀</a> | 
+        <a href= {% url "posts:feed" %}>📰</a>
+        <a href= {% url "users:register" %}>🔒</a>
+        <a href= {% url "users:login" %}>🔐</a>
+        <form class="logout" action={% url "users:logout" %} method="post">
+            {% csrf_token %}
+            <button class="logout-button" title="logout" aria-label="user logout">👋</button>
+        </form>
+    </nav>
+    <main>
+        {% block content %}
+            Deafult content
+        {% endblock %}
+    </main>
+</body>
+</html>
